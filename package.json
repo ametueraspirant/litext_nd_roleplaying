@@ -3,17 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.1.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "autoprefixer": "^9.7.4",
+    "mongoose": "^5.9.4",
+    "postcss-cli": "^7.1.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
+    "react-keyed-file-browser": "^1.8.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "tailwindcss": "^1.2.0",
+    "tailwindcss-blend-mode": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build  && postcss tailwindimport.css -o src/pages/partials/css/tailwind.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
