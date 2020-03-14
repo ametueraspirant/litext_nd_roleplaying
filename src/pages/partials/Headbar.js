@@ -1,12 +1,16 @@
 import React, { useContext } from "react";
+import _ from 'lodash';
 import './css/tailwind.css';
-import userprovider from '../../auth/userprovider.js';
+import UserProvider from '../../auth/UserProvider.js';
 
 function Headbar(props)
 {
-	const userstatus = useContext(userprovider.context());
+	const userdata = useContext(UserProvider.context);
+	const logintype = !_.isEmpty(userdata) ? console.log(userdata) : {};
 	return(
-		<h1>Headbar</h1>
+		<div className = "bg-blue-900 p-5">
+			Headbar
+		</div>
 	);
 }
 

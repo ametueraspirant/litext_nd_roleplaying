@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 const context = createContext(null);
-const userprovider = ({ children }) => {
+const UserProvider = ({ children }) => {
 	const [user, setUser] = useState({});
 	useEffect(() => {
 		fetch("/user").then(res => res.json()).then(res => setUser(res)).catch(err => console.log(err));
@@ -12,6 +12,6 @@ const userprovider = ({ children }) => {
 	);
 };
 
-userprovider.context = context;
+UserProvider.context = context;
 
-export default userprovider;
+export default UserProvider;
