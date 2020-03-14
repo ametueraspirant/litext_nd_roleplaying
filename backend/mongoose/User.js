@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const passlocmongoose = require('passport-local-mongoose');
 
 const UserSchema = new Schema({
 	username: String,
@@ -9,8 +8,6 @@ const UserSchema = new Schema({
 	// campaigns: Array,
 	// forumthreads: Array
 });
-
-UserSchema.plugin(passlocmongoose);
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

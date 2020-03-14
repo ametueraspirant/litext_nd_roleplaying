@@ -1,28 +1,23 @@
 const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const PORT = process.env.PORT || 3001;
 const app = express();
+const cors = require('cors');
 require('dotenv').config();
 const router = require('./router.js');
-const passport = require('./passport');
+const mongoose = require('mongoose');
 
-app.use(cors());
-app.use(express.json());
+const PORT = process.env.PORT || 3001;
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongodatabase";
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/users";
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.connection.once('open', function() {
 	console.log("mongodb connected yo");
 });
 
+app.use(cors());
+app.use(express.json());
 app.use('/api', router);
-
 require('./passport');
 
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
 });
-
-// why do this
-// module.exports = app;

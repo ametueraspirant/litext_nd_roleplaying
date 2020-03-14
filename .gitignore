@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-/database/passport/keys.js
+/backend/passport/keys.js
 /.pnp
 .pnp.js
 

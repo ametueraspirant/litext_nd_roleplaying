@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Home, Forum, Login, Register } from './pages';
-import Headbar from './pages/partials/Headbar.js';
+import { Headbar } from './pages/partials';
 
 function App() {
   const [user, setUser] = useState({
