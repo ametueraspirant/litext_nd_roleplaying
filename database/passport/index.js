@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const passport = require('passport');
-const pGithub = require('passport-github');
-const pTwitter = require('passport-twitter');
+const pGithub = require('passport-github').Strategy;
+const pTwitter = require('passport-twitter').Strategy;
 const keys = require('./keys.js');
 let user = {};
 
@@ -52,4 +52,11 @@ app.get("/auth/twitter/callback", passport.authenticate("twitter"), (req, res) =
 	res.redirect("/");
 });
 
-// /api/auth/twitter/callback
+app.get("/user", (req, res) => {
+	res.send(user);
+});
+
+app.get("/logout", (req, res) => {
+	user = {};
+	res.redirect("/");
+});
