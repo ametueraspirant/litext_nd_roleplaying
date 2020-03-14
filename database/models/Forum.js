@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const forum_schema = new Schema({
+const ForumSchema = new Schema({
 	
 });
 
-const Forum = mongoose.model('Forum', forum_schema);
+const Forum = mongoose.model('Forum', ForumSchema);
 module.exports = Forum;

@@ -4,7 +4,9 @@ const cors = require('cors');
 const passport = require('passport');
 const pGithub = require('passport-github').Strategy;
 const pTwitter = require('passport-twitter').Strategy;
+const pLocal = require('passport-local').Strategy;
 const keys = require('./keys.js');
+const User = require('../models/User.js/User.js');
 let user = {};
 
 app.use(cors());
@@ -17,6 +19,11 @@ passport.serializeUser((user, callback) => {
 passport.deserializeUser((user, callback) => {
 	callback(null, user);
 });
+
+//local
+passport.use(new pLocal(User.authenticate()));
+
+app.get("/auth/local", passport.authenticate("local"));
 
 //github
 passport.use(new pGithub({

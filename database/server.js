@@ -10,7 +10,7 @@ const passport = require('./passport');
 app.use(cors());
 app.use(express.json());
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/users";
 mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
 mongoose.connection.once('open', function() {
 	console.log("mongodb connected yo");
