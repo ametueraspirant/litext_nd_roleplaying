@@ -1,7 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../../mongoose/User.js');
+const User = require('../../mongoose/User.js/index.js.js');
 
-passport.use(new LocalStrategy(
+const localStrategy = new LocalStrategy(
 	(username, password, done) => {
 		User.findOne({ username: username }, (err, user) => {
 			if(err) { return done(err); }
@@ -10,4 +10,6 @@ passport.use(new LocalStrategy(
 			return done(null, user);
 		});
 	}
-));
+);
+
+module.exports = localStrategy;
