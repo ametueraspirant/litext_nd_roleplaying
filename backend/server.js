@@ -15,7 +15,7 @@ mongoose.connection.once('open', function() {
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', router);
+app.use('/auth', router);
 require('./passport');
 
 app.listen(PORT, function() {

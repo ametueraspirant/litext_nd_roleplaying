@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import './css/tailwind.css';
@@ -7,7 +7,6 @@ import backimg from '../../blackpaper.png';
 function Headbar(props)
 {
 	const userdata = null;
-	// const logintype = !_.isEmpty(userdata) ? console.log(userdata) : {};
 	return(
 		<div className = "bg-blue-900 p-10 flex flex-row justify-between" style = {{backgroundImage: backimg}}>
 			<Link className = "text-2xl font-semibold" to = "/">Home</Link>
