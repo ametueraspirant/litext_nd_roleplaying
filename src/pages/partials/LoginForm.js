@@ -37,8 +37,8 @@ function LoginForm(props) {
 					<Link to = "/register">Sign up</Link>
 				</div>
 			</form>
-			<Link to = "/auth/github">log in with github</Link>
-			<Link to = "/auth/twitter">log in with twitter</Link>
+			<a href = "/auth/github">log in with github</a>
+			<a href= "/auth/twitter">log in with twitter</a>
 		</div>
 	);
 };

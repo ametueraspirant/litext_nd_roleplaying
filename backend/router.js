@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express();
+const app = express();
 const passport = require('passport');
 
 // local redirect

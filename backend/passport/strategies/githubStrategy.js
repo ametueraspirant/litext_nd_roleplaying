@@ -1,5 +1,5 @@
 const GithubStrategy = require('passport-github').Strategy;
-const User = require('../../mongoose/User.js/index.js');
+const User = require('../../mongoose/User.js');
 const keys = require('../keys.js');
 
 const githubStrategy = new GithubStrategy({

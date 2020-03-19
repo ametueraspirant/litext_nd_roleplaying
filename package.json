@@ -28,7 +28,7 @@
     "tailwindcss-blend-mode": "^1.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start && node backend/server.js",
     "build": "react-scripts build  && postcss tailwindimport.css -o src/pages/partials/css/tailwind.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -36,6 +36,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:8080",
   "browserslist": {
     "production": [
       ">0.2%",

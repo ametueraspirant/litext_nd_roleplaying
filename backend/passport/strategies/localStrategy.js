@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('../../mongoose/User.js/index.js.js');
+const User = require('../../mongoose/User.js');
 
 const localStrategy = new LocalStrategy(
 	(username, password, done) => {
@@ -7,7 +7,7 @@ const localStrategy = new LocalStrategy(
 			if(err) { return done(err); }
 			if(!user) { return done(null, false); }
 			if(!user.verifyPassword(password)) { return done(null, false); }
-			return done(null, user);
+			return done(null, user); 
 		});
 	}
 );

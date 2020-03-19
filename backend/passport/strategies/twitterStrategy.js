@@ -1,10 +1,10 @@
 const TwitterStrategy = require('passport-twitter').Strategy;
-const User = require('../../mongoose/User.js/index.js');
+const User = require('../../mongoose/User.js');
 const keys = require('../keys.js');
 
 const twitterStrategy = new TwitterStrategy({
-	clientID: keys.TWITTER.clientID,
-	clientSecret: keys.TWITTER.clientSecret,
+	consumerKey: keys.TWITTER.clientID,
+	consumerSecret: keys.TWITTER.clientSecret,
 	callbackURL: "/auth/twitter/callback"
 },
 (accessToken, refreshToken, profile, cb) => {
