@@ -28,7 +28,7 @@
     "tailwindcss-blend-mode": "^1.0.0"
   },
   "scripts": {
-    "start": "react-scripts start && node backend/server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build  && postcss tailwindimport.css -o src/pages/partials/css/tailwind.css",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

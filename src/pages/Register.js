@@ -1,9 +1,10 @@
 import React from "react";
+import { SignupForm } from './partials';
 
 function Register(props)
 {
 	return(
-		<h1>register</h1>
+		<SignupForm user = { props.user } setUser = { props.setUser } />
 	);
 }
 
