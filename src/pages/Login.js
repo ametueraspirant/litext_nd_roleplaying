@@ -4,7 +4,7 @@ import { LoginForm } from './partials';
 function Login(props)
 {
 	return(
-		<LoginForm />
+		<LoginForm user = { props.user } setUser = { props.setUser } />
 	);
 }
 

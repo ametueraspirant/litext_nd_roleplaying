@@ -5,20 +5,19 @@ import { Headbar } from './pages/partials';
 
 function App() {
   const [user, setUser] = useState({
-    name: 'No user logged in',
-    phone: '+0 000 000 000',
-    id: -1
+    username: "",
+    loggedin: false
   });
 
   return (
     <BrowserRouter>
       <div>
-        <Headbar />
+        <Headbar user = { user } setUser = { setUser } />
         <Switch>
-          <Route exact path = "/" component = { Home } />
-          <Route exact path = "/forum" component = { Forum } />
-          <Route exact path = "/login" component = { Login } />
-          <Route exact path = "/register" component = { Register } />
+          <Route exact path = "/" render = { (props) => <Home {...props} user = {user} setUser = {setUser} /> } />
+          <Route exact path = "/forum" render = { (props) => <Forum {...props} user = {user} setUser = {setUser} /> } />
+          <Route exact path = "/login" render = { (props) => <Login {...props} user = {user} setUser = {setUser} /> } />
+          <Route exact path = "/register" render = { (props) => <Register {...props} user = {user} setUser = {setUser} /> } />
         </Switch>
       </div>
     </BrowserRouter>

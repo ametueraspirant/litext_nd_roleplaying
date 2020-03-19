@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import './css/tailwind.css';
 import axios from 'axios';
 
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
+
 
 function SignupForm(props) {
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+	
 	return(
 		<div className = "flex flex-col">
 			<h1>Sign Up</h1>

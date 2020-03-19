@@ -1,25 +1,29 @@
 import React, { useState } from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './css/tailwind.css';
 import axios from 'axios';
 
-const [username, setUsername] = useState('');
-const [password, setPassword] = useState('');
 
-const local_submit = event => {
-	event.preventDefault();
-	axios.post('/auth/local')
+
+
+
+function LoginForm(props) {
+	const [username, setUsername] = useState('');
+	const [password, setPassword] = useState('');
+
+	const local_submit = event => {
+		event.preventDefault();
+		axios.post('/auth/local')
 		.then(res => {
 			if(res.status === 200){
 				props.updateUser({
 					loggedin: true,
 					username: res.data.username
-				})
-			}
-		})
-};
+				});
+			};
+		});
+	};
 
-function LoginForm(props) {
 	return(
 		<div className = "flex flex-col">
 			<h1>Log In</h1>
