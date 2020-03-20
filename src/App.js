@@ -6,6 +6,7 @@ import { Headbar } from './pages/partials';
 function App() {
   const [user, setUser] = useState({
     username: "",
+    password: "",
     loggedin: false
   });
 

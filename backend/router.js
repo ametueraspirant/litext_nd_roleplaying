@@ -6,7 +6,8 @@ const passport = require('passport');
 app.post('/local',
 	passport.authenticate('local', { failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('/');
+		console.log(req, res);
+		// res.redirect('/');
 	}
 );
 
@@ -15,7 +16,8 @@ app.get('/github', passport.authenticate('github'));
 app.get('/github/callback',
 	passport.authenticate('github', { failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('/');
+		console.log(req, res);
+		// res.redirect('/');
 	}
 );
 
@@ -24,8 +26,15 @@ app.get('/twitter', passport.authenticate('twitter'));
 app.get('/twitter/callback',
 	passport.authenticate('twitter', { failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('/');
+		console.log(req, res);
+		// res.redirect('/');
 	}
 );
+
+app.get('/logout', (req, res) => {
+	req.logout();
+	console.log(req, res);
+	// res.redirect('/');
+})
 
 module.exports = app;

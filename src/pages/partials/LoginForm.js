@@ -3,22 +3,19 @@ import { Link } from 'react-router-dom';
 import './css/tailwind.css';
 import axios from 'axios';
 
-
-
-
-
 function LoginForm(props) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
 	const local_submit = event => {
 		event.preventDefault();
-		axios.post('/auth/local')
+		axios.post('/auth/local', {username: username, password: password})
 		.then(res => {
 			if(res.status === 200){
-				props.updateUser({
+				props.setUser({
 					loggedin: true,
-					username: res.data.username
+					username: res.data.username,
+					password: res.data.password
 				});
 			};
 		});
@@ -37,8 +34,8 @@ function LoginForm(props) {
 					<Link to = "/register">Sign up</Link>
 				</div>
 			</form>
-			<a href = "/auth/github">log in with github</a>
-			<a href= "/auth/twitter">log in with twitter</a>
+			{/* <a href = "/auth/github">log in with github</a>
+			<a href= "/auth/twitter">log in with twitter</a> */}
 		</div>
 	);
 };

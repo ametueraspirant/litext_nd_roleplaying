@@ -3,8 +3,6 @@ import { Link, Redirect } from 'react-router-dom';
 import './css/tailwind.css';
 import axios from 'axios';
 
-
-
 function SignupForm(props) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
