@@ -10,7 +10,7 @@ function LoginForm(props) {
 	const local_submit = event => {
 		event.preventDefault();
 		axios.post('/auth/local', {username: username, password: password})
-		.then(res => {
+		.then((req, res) => {
 			if(res.status === 200){
 				props.setUser({
 					loggedin: true,
@@ -26,9 +26,9 @@ function LoginForm(props) {
 			<h1>Log In</h1>
 			<form>
 				<h2>Username</h2>
-				<input type = "text" onChange = {event => setPassword(event.target.value)}/>
-				<h2>Password</h2>
 				<input type = "text" onChange = {event => setUsername(event.target.value)}/>
+				<h2>Password</h2>
+				<input type = "password" onChange = {event => setPassword(event.target.value)}/>
 				<div className = "flex flex-row">
 					<input type = "submit" value = "Log in" onClick = {local_submit}/>
 					<Link to = "/register">Sign up</Link>
