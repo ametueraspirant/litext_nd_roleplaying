@@ -1,20 +1,49 @@
 const express = require('express');
 const app = express();
 const passport = require('passport');
+const User = require('./mongoose/User.js');
 
 // local redirect
-app.post('/local',
-	passport.authenticate('local', { failureRedirect: '/login' }),
+app.post('/local/login',
+	(req, res, next) => {
+        console.log(req.body);
+        next();
+    },
+	passport.authenticate('local'),
 	(req, res) => {
-		console.log(req, res);
-		// res.redirect('/');
+		console.log('logged in', req.user);
+		let userdata = {
+			username: req.user.username,
+			password: req.user.password
+		}
+		res.send(userdata);
 	}
 );
+
+app.post('/local/register', (req, res) => {
+	const { username, password } = req.body;
+	User.findOne({ username: username }, (err, user) => {
+		if(err) {
+			console.log(err);
+		} else if(user) {
+			res.json({ error: `Sorry, already a user with the username: ${username}` });
+		} else {
+			const newUser = new User({
+				username: username,
+				password: password
+			})
+			newUser.save((err, saved) => {
+				if (err) return res.json(err);
+                res.json(savedUser);
+			});
+		};
+	});
+});
 
 // github redirect
 app.get('/github', passport.authenticate('github'));
 app.get('/github/callback',
-	passport.authenticate('github', { failureRedirect: '/login' }),
+	passport.authenticate('github'),
 	(req, res) => {
 		console.log(req, res);
 		// res.redirect('/');
