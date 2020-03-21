@@ -19,6 +19,7 @@ function App() {
           <Route exact path = "/forum" render = { (props) => <Forum {...props} user = {user} setUser = {setUser} /> } />
           <Route exact path = "/login" render = { (props) => <Login {...props} user = {user} setUser = {setUser} /> } />
           <Route exact path = "/register" render = { (props) => <Register {...props} user = {user} setUser = {setUser} /> } />
+          <Route exact path = "/logout" render = { setUser = { username: "", password: "", loggedin: false } } />
         </Switch>
       </div>
     </BrowserRouter>

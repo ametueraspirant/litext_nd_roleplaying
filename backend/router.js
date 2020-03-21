@@ -16,7 +16,7 @@ app.post('/local/login',
 			username: req.user.username,
 			password: req.user.password
 		}
-		res.send(userdata);
+		res.json(userdata);
 	}
 );
 
@@ -28,14 +28,18 @@ app.post('/local/register', (req, res) => {
 		} else if(user) {
 			res.json({ error: `Sorry, already a user with the username: ${username}` });
 		} else {
+			try {
 			const newUser = new User({
 				username: username,
 				password: password
 			})
 			newUser.save((err, saved) => {
 				if (err) return res.json(err);
-                res.json(savedUser);
+                return res.json(saved);
 			});
+			} catch(err) {
+				console.log(err);
+			}
 		};
 	});
 });
@@ -63,7 +67,7 @@ app.get('/twitter/callback',
 app.get('/logout', (req, res) => {
 	req.logout();
 	console.log(req, res);
-	// res.redirect('/');
-})
+	res.status(200).send();
+});
 
 module.exports = app;

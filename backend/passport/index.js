@@ -1,16 +1,12 @@
 const passport = require('passport');
-const express = require('express');
-const app = express();
 const LocalStrategy = require('./strategies/localStrategy.js');
 const GithubStrategy = require('./strategies/githubStrategy.js');
 const TwitterStrategy = require('./strategies/twitterStrategy.js');
 const User = require('../mongoose/User');
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 passport.serializeUser((user, done) => {
-	done(null, user.id);
+	// done(null, user.id);
+	done(null, {id: user.id});
 });
 
 passport.deserializeUser((id, done) => {

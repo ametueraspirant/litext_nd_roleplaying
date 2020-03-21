@@ -11,11 +11,11 @@ const UserSchema = new Schema({
 });
 
 UserSchema.methods = {
-	verifyPassword: password => bcrypt.compareSync(password, this.password),
-	hashPassword: password => bcrypt.hashSync(password, 10)
+	verifyPassword: function(password) { return bcrypt.compareSync(password, this.password) },
+	hashPassword: function(password) { return bcrypt.hashSync(password, 10) }
 };
 
-UserSchema.pre('save', next => {
+UserSchema.pre('save', function(next) {
 	if(!this.password)
 	{
 		console.log("no password provided");

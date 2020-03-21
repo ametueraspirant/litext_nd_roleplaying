@@ -13,11 +13,12 @@ function SignupForm(props) {
 		axios.post('/auth/local/register', { username: username, password: password })
 		.then(res => {
 			if(!res.data.errmsg) {
-				props.setuser({
+				props.setUser({
 					loggedin: true,
 					username: res.data.username,
 					password: res.data.password
 				});
+				return(<Redirect to = "/login" />);
 			};
 		})
 		.catch(err => {

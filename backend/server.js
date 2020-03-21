@@ -15,8 +15,12 @@ mongoose.connection.once('open', function() {
 
 app.use(cors());
 app.use(express.json());
+const passport = require('./passport');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/auth', router);
-require('./passport');
 
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
