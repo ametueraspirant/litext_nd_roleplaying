@@ -6,7 +6,6 @@ const User = require('./mongoose/User.js');
 // local redirect
 app.post('/local/login',
 	(req, res, next) => {
-        console.log(req.body);
         next();
     },
 	passport.authenticate('local'),
@@ -63,6 +62,16 @@ app.get('/twitter/callback',
 		// res.redirect('/');
 	}
 );
+
+app.post('/user', (req, res) => {
+	if(req.user) {
+		const { username, password } = req.body;
+		User.findOne({ username: username }, (err, user) => {
+			if(err) console.log(err);
+			else if(user) res.json(user);
+		})
+	}
+});
 
 app.get('/logout', (req, res) => {
 	req.logout();

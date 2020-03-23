@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link, Redirect } from 'react-router-dom';
 import './css/tailwind.css';
 import axios from 'axios';
-import passport from "passport";
 
 function SignupForm(props) {
 	const [username, setUsername] = useState('');
@@ -10,7 +9,7 @@ function SignupForm(props) {
 	
 	const local_submit = event => {
 		event.preventDefault();
-		axios.post('/auth/local/register', { username: username, password: password })
+		axios.post('/api/local/register', { username: username, password: password })
 		.then(res => {
 			if(!res.data.errmsg) {
 				props.setUser({

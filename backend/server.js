@@ -20,7 +20,7 @@ const passport = require('./passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/auth', router);
+app.use('/api', router);
 
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);

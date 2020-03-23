@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Home, Forum, Login, Register } from './pages';
 import { Headbar } from './pages/partials';
+import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState({
@@ -9,6 +10,21 @@ function App() {
     password: "",
     loggedin: false
   });
+
+  useEffect(()=> {
+    axios.post('/api/user')
+    .then(res => {
+      if(res.data.user)
+      {
+        console.log(res.data.user);
+        setUser({
+          username: res.data.user.username,
+          password: res.data.user.password,
+          loggedin: true
+        });
+      };
+    });
+  },[]);
 
   return (
     <BrowserRouter>
@@ -19,7 +35,6 @@ function App() {
           <Route exact path = "/forum" render = { (props) => <Forum {...props} user = {user} setUser = {setUser} /> } />
           <Route exact path = "/login" render = { (props) => <Login {...props} user = {user} setUser = {setUser} /> } />
           <Route exact path = "/register" render = { (props) => <Register {...props} user = {user} setUser = {setUser} /> } />
-          <Route exact path = "/logout" render = { setUser = { username: "", password: "", loggedin: false } } />
         </Switch>
       </div>
     </BrowserRouter>

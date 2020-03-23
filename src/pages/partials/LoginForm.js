@@ -9,7 +9,7 @@ function LoginForm(props) {
 
 	const local_submit = event => {
 		event.preventDefault();
-		axios.post('/auth/local/login', {username: username, password: password})
+		axios.post('/api/local/login', {username: username, password: password})
 		.then(res => {
 			if(res.status === 200){
 				props.setUser({
