@@ -12,7 +12,18 @@ function Forum(props)
 	});
 
 	useEffect(()=> {
-
+		axios.get('/api/forum')
+		.then(res=> {
+			if(res.status === 200) {
+				let newForum = res.data;
+				setForum({
+					title: newForum.title,
+					description: newForum.description,
+					subforums: newForum.subforums,
+					threads: newForum.threads
+				});
+			}
+		});
 	}, []);
 
 	// const getForum = event => {
@@ -26,10 +37,12 @@ function Forum(props)
 	// };
 
 	return(
-		<h1>{forum.title?forum.title:"no forum saved"}</h1>
-		<h1>{forum.description?forum.description:"no forum saved"}</h1>
-		<h1>{forum.subforums?forum.subforums:"no forum saved"}</h1>
-		<h1>{forum.threads?forum.threads:"no forum saved"}</h1>
+		<div>
+			<h1>{forum.title?forum.title:"no forum saved"}</h1>
+			<h1>{forum.description?forum.description:"no forum saved"}</h1>
+			<h1>{forum.subforums?forum.subforums:"no forum saved"}</h1>
+			<h1>{forum.threads?forum.threads:"no forum saved"}</h1>
+		</div>
 	);
 }
 
