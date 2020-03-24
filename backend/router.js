@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const passport = require('passport');
 const User = require('./mongoose/User.js');
+const Forum = require('./mongoose/Forum.js');
 
 // local redirect
 app.post('/local/login',
@@ -32,7 +33,7 @@ app.post('/local/register', (req, res) => {
 				username: username,
 				password: password,
 				ismod: false
-			})
+			});
 			newUser.save((err, saved) => {
 				if (err) return res.json(err);
                 return res.json(saved);
@@ -82,10 +83,25 @@ app.get('/logout', (req, res) => {
 
 // Mongoose Routes ====================================================================
 app.get('/forum', (req, res) => {
-
+	Forum.findOne({ title: "main" }, (err, forum) => {
+		if(err) {
+			console.log(err);
+		} else if(forum) {
+			res.json(forum);
+		} else {
+			const newForum = new Forum({
+				title: "main",
+				description: "the top level"
+			});
+			newForum.save((err, saved) => {
+				if (err) return res.json(err);
+                return res.json(saved);
+			});
+		};
+	});
 });
 
-app.get('/forum/:id', (req, res) => {
+app.post('/forum/:id', (req, res) => {
 
 });
 
