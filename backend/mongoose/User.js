@@ -5,10 +5,9 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
 	username: { type: String, unique: true, required: true },
 	password: { type: String, unique: false, required: true},
-	ismod: { type: Boolean, unique: false, required: true }
-	// characters: Array,
-	// campaigns: Array,
-	// forumthreads: Array
+	ismod: { type: Boolean, unique: false, required: true },
+	threads: { type: Array, unique: false, required: false },
+	posts: { type: Array, unique: false, required: false }
 });
 
 UserSchema.methods = {

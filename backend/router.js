@@ -80,4 +80,13 @@ app.get('/logout', (req, res) => {
 	res.status(200).send();
 });
 
+// Mongoose Routes ====================================================================
+app.get('/forum', (req, res) => {
+
+});
+
+app.get('/forum/:id', (req, res) => {
+
+});
+
 module.exports = app;
