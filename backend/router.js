@@ -30,7 +30,8 @@ app.post('/local/register', (req, res) => {
 			try {
 			const newUser = new User({
 				username: username,
-				password: password
+				password: password,
+				ismod: false
 			})
 			newUser.save((err, saved) => {
 				if (err) return res.json(err);

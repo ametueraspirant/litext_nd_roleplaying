@@ -8,6 +8,7 @@ function App() {
   const [user, setUser] = useState({
     username: "",
     password: "",
+    ismod: false,
     loggedin: false
   });
 
@@ -20,6 +21,7 @@ function App() {
         setUser({
           username: res.data.user.username,
           password: res.data.user.password,
+          ismod: res.data.user.ismod,
           loggedin: true
         });
       };
