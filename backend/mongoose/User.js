@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
 	username: { type: String, unique: true, required: true },
 	password: { type: String, unique: false, required: true},
-	ismod: { type: Boolean, unique: false, required: true },
+	ismod: { type: Boolean, unique: false, required: false, default: false },
 	threads: { type: Array, unique: false, required: false, default: [] },
 	posts: { type: Array, unique: false, required: false, default: [] }
 });

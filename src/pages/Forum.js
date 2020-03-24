@@ -26,16 +26,6 @@ function Forum(props)
 		});
 	}, []);
 
-	// const getForum = event => {
-	// 	event.preventDefault();
-	// 	axios.get('/api/forum')
-	// 	.then(res=> {
-	// 		if(res.status === 200){
-	// 			console.log("got the forum", res);
-	// 		};
-	// 	});
-	// };
-
 	return(
 		<div>
 			<h1>{forum.title?forum.title:"no forum saved"}</h1>
