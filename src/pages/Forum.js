@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { EditForum } from './partials';
 
 function Forum(props)
 {
@@ -26,12 +27,23 @@ function Forum(props)
 		});
 	}, []);
 
+	const getForum = event=> {
+		event.preventDefault();
+		axios.get('/api/forum/view/test')
+		.then(res=> {
+			if(res.status === 200) {
+				console.log(res);
+			}
+		})
+	}
+
 	return(
 		<div>
-			<h1>{forum.title?forum.title:"no forum saved"}</h1>
-			<h1>{forum.description?forum.description:"no forum saved"}</h1>
-			<h1>{forum.subforums?forum.subforums:"no forum saved"}</h1>
-			<h1>{forum.threads?forum.threads:"no forum saved"}</h1>
+			<button onClick={getForum}>test</button>
+			{
+				props.user.ismod &&
+				<EditForum forum = {forum} setForum = {setForum} />
+			}
 		</div>
 	);
 }

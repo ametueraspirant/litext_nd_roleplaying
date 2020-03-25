@@ -101,7 +101,20 @@ app.get('/forum', (req, res) => {
 	});
 });
 
-app.post('/forum/:id', (req, res) => {
+app.get('/forum/view/:id', (req, res) => {
+	console.log(req.params.id);
+	Forum.findOne({ shortid: req.params.id }, (err, forum) => {
+		if(err)return res.json(err);
+		else if(forum)return res.json(forum);
+		else return console.log("no such forum, sir!");
+	});
+});
+
+app.post('/forum/create', (req, res) => {
+
+});
+
+app.post('/forum/delete', (req, res) => {
 
 });
 
