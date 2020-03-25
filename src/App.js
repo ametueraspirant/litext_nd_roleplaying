@@ -34,7 +34,7 @@ function App() {
         <Headbar user = { user } setUser = { setUser } />
         <Switch>
           <Route exact path = "/" render = { (props) => <Home {...props} user = {user} setUser = {setUser} /> } />
-          <Route exact path = "/forum" render = { (props) => <Forum {...props} user = {user} setUser = {setUser} /> } />
+          <Route path = "/forum/:id" render = { (props) => <Forum {...props} user = {user} setUser = {setUser} /> } />
           <Route exact path = "/login" render = { (props) => <Login {...props} user = {user} setUser = {setUser} /> } />
           <Route exact path = "/register" render = { (props) => <Register {...props} user = {user} setUser = {setUser} /> } />
         </Switch>

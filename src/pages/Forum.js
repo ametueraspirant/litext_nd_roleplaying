@@ -13,22 +13,33 @@ function Forum(props)
 	});
 
 	useEffect(()=> {
-		axios.get('/api/forum')
-		.then(res=> {
-			if(res.status === 200) {
-				let newForum = res.data;
-				setForum({
-					title: newForum.title,
-					description: newForum.description,
-					subforums: newForum.subforums,
-					threads: newForum.threads
-				});
-			}
-		});
+		if(!props.match.params.id) {
+			axios.get('/api/forum')
+			.then(res=> {
+				if(res.status === 200) {
+					let newForum = res.data;
+					setForum({
+						title: newForum.title,
+						description: newForum.description,
+						subforums: newForum.subforums,
+						threads: newForum.threads
+					});
+				}
+			});
+		} else {
+			let _id = props.match.params.id;
+			axios.get('/api/forum/view/' + _id)
+			.then(res=> {
+				if(res.status === 200) {
+					console.log(res);
+				}
+			});
+		}
 	}, []);
 
 	const getForum = event=> {
 		event.preventDefault();
+		
 		axios.get('/api/forum/view/test')
 		.then(res=> {
 			if(res.status === 200) {
