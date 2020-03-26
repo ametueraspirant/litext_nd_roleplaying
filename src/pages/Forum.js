@@ -62,6 +62,7 @@ function Forum(props)
 			<h1>{forum.subforums?forum.subforums:"no forum saved"}</h1>
 			<h1>{forum.threads?forum.threads:"no forum saved"}</h1>
 			<h1>is anything rendering?</h1>
+
 			{
 				props.user.ismod &&
 				<EditForum user = {props.user} forum = {forum} setForum = {setForum} />
