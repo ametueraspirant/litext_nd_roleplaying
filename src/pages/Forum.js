@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { EditForum } from './partials';
 
 function Forum(props)
@@ -13,6 +12,7 @@ function Forum(props)
 	});
 
 	useEffect(()=> {
+	console.log(props.user.ismod);
 		if(!props.match.params.id) {
 			axios.get('/api/forum')
 			.then(res=> {
@@ -31,6 +31,13 @@ function Forum(props)
 			axios.get('/api/forum/view/' + _id)
 			.then(res=> {
 				if(res.status === 200) {
+					// let newForum = res.data;
+					// setForum({
+					// 	title: newForum.title,
+					// 	description: newForum.description,
+					// 	subforums: newForum.subforums,
+					// 	threads: newForum.threads
+					// });
 					console.log(res);
 				}
 			});
@@ -50,10 +57,14 @@ function Forum(props)
 
 	return(
 		<div>
-			<button onClick={getForum}>test</button>
+			<h1>{forum.title?forum.title:"no forum saved"}</h1>
+			<h1>{forum.description?forum.description:"no forum saved"}</h1>
+			<h1>{forum.subforums?forum.subforums:"no forum saved"}</h1>
+			<h1>{forum.threads?forum.threads:"no forum saved"}</h1>
+			<h1>is anything rendering?</h1>
 			{
 				props.user.ismod &&
-				<EditForum forum = {forum} setForum = {setForum} />
+				<EditForum user = {props.user} forum = {forum} setForum = {setForum} />
 			}
 		</div>
 	);

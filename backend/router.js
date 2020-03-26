@@ -89,7 +89,7 @@ app.get('/forum', (req, res) => {
 		} else if(forum) {
 			res.json(forum);
 		} else {
-			const newForum = new Forum({
+			let newForum = new Forum({
 				title: "main",
 				description: "the top level"
 			});
@@ -110,11 +110,20 @@ app.get('/forum/view/:id', (req, res) => {
 });
 
 app.post('/forum/create', (req, res) => {
-
+	let hostForum = Forum.findOne({ shortid: req.body.shortid });
+	let newForum = new Forum({
+		title: req.title,
+		description: req.description
+	});
+	newForum.save((err, saved) => {
+		if (err) return res.json(err);
+        return res.json(saved);
+	});
+	hostForum.subforums.push(newForum.shortid);
 });
 
-app.post('/forum/delete', (req, res) => {
-
+app.get('/forum/delete', (req, res) => {
+	// delete code
 });
 
 module.exports = app;
