@@ -48,7 +48,7 @@ function Forum(props)
 		event.preventDefault();
 		
 		axios.get('/api/forum/view/test')
-		.then(res=> {
+		.then(res => {
 			if(res.status === 200) {
 				console.log(res);
 			}
