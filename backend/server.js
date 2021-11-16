@@ -1,24 +1,24 @@
-const express = require('express');
+import express, { json } from 'express';
 const app = express();
-const cors = require('cors');
+import cors from 'cors';
 require('dotenv').config();
-const router = require('./router.js');
-const mongoose = require('mongoose');
+import router from './router.js';
+import { connect, connection } from 'mongoose';
 
 const PORT = process.env.PORT || 8080;
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongodatabase";
 
-mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
-mongoose.connection.once('open', function() {
+connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true });
+connection.once('open', function() {
 	console.log("mongodb connected yo");
 });
 
 app.use(cors());
-app.use(express.json());
-const passport = require('./passport');
+app.use(json());
+import { initialize, session } from './passport';
 
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(initialize());
+app.use(session());
 
 app.use('/api', router);
 
